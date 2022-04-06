@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 #こんな酷いコードを見に来るなんて貴方...さては変人ですね？
 import tkinter
 import customtkinter
