@@ -1,0 +1,3 @@
+# Migrate-Floorp-browser-profiles
+これはお餅のCreeperが制作した、Floorp最新版へのプロファイル移行を簡単にするプログラムです。
+Floorp、Firefoxの両方を終了してからご利用ください。
