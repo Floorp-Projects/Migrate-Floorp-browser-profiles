@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-#こんな酷いコードを見に来るなんて貴方...さては変人ですね？
 import tkinter
 import customtkinter
 from PIL import Image, ImageTk
@@ -51,6 +50,7 @@ error_ro = ""
 error_ro2 = ""
 error_ro3 = ""
 error_ro4 = ""
+default_default_pro = 0
 switch_var = tkinter.StringVar(value=configure)
 try:
     with open(apd + '/Mozilla/Firefox/profiles.ini') as fin:
