@@ -42,7 +42,7 @@ root_tk.title('Floorp-プロファイル移行')
 image = Image.open("./folder.png")
 bg_image = ImageTk.PhotoImage(image)
 apd = os.getenv('APPDATA')
-moving_dir = (apd + "/Ablaze/Floorp")
+moving_dir = (apd + "/Floorp")
 confirm_chk = False
 error = False
 default_chk = False
@@ -91,8 +91,11 @@ try:
                 default_chk = True
             prof_name = default_profiles[i]
         i += 1
-    prof_list=['[Profile0]\n', prof_name + '\n', prof_isrelative + '\n', prof_path + '\n', 'Default=1\n\n', '[General]\n', 'Version=2']
+    default_path = ""
+    default_path = prof_path.replace("Path=Profiles/", "Default=Profiles/")
+    prof_list=['[Profile0]\n', prof_name + '\n', prof_isrelative + '\n', prof_path + '\n', 'Default=1\n\n', '[General]\n', 'Version=2\n\n', '[Install22EB8429C9C8096C]\n', default_path + '\n', 'Locked=1']
     move_path = prof_path.replace("Path=Profiles/", "")
+
 except FileNotFoundError as chk_ross:
     err_ro3 = chk_ross
     error = True
@@ -111,8 +114,10 @@ if (default_chk):
             if 'Name=' in chk_prof:
                 def_prof_name = default_profiles[i]
             i += 1
+        default_path = ""
+        default_path = def_prof_path.replace("Path=Profiles/", "Default=Profiles/")
         prof_list = []
-        prof_list = ['[Profile0]\n', def_prof_name + '\n', def_prof_isrelative + '\n', def_prof_path + '\n', 'Default=1\n\n', '[General]\n', 'Version=2']
+        prof_list = ['[Profile0]\n', def_prof_name + '\n', def_prof_isrelative + '\n', def_prof_path + '\n', 'Default=1\n\n', '[General]\n', 'Version=2\n\n', '[Install22EB8429C9C8096C]\n', default_path + '\n', 'Locked=1']
         move_path = ""
         move_path = def_prof_path.replace("Path=Profiles/", "")
 
@@ -174,7 +179,7 @@ def copy():
     if (confirm_chk):
         shutil.rmtree(moving_dir + '/Profiles/' + move_path)
     if not(os.path.exists(moving_dir)):
-        os.makedirs(apd + '/Ablaze\Floorp\Profiles', exist_ok=True)
+        os.makedirs(apd + '/Floorp\Profiles', exist_ok=True)
     f = open(moving_dir + '/profiles.ini', 'w')
     f.writelines(prof_list)
     f.close()
@@ -256,3 +261,4 @@ else:
             start()
 
 root_tk.mainloop()
+
