@@ -171,15 +171,13 @@ def start_copy():
     
 
 def copy():
-    progressbar.set(0)
     if (confirm_chk):
         shutil.rmtree(moving_dir + '/Profiles/' + move_path)
-    progressbar.set(20)
+    if not(os.path.exists(moving_dir)):
+        os.makedirs(apd + '/Ablaze\Floorp\Profiles', exist_ok=True)
     f = open(moving_dir + '/profiles.ini', 'w')
-    progressbar.set(50)
     f.writelines(prof_list)
     f.close()
-    progressbar.set(60)
     try:
         shutil.copytree(apd + '/Mozilla/Firefox/Profiles/' + move_path, moving_dir + '/Profiles/' + move_path)
     except FileExistsError:
